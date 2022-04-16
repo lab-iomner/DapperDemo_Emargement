@@ -9,5 +9,8 @@
         public string State { get; set; }
         public string PostalCode { get; set; }
 
+        //relation
+        public List<Employee> Employees { get; set; }
+
     }
 }
