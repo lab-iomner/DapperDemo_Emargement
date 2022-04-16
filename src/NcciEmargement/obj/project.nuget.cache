@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "u2meEIETh3SAn/6XUFHfcEFp515c/QaEh+bbOAWoKEw/339lWZlbKzi9//93Vq74LXQ5XVSutoP3dOTYhazBLQ==",
+  "dgSpecHash": "IrZfGPVVIwAIIKlNopTc6s+72cmkfD293CvQxOPJ8kRc9BNjRpIbcdBhsUw81kWVf3vI+XU6S25L+JcpAiuLfw==",
   "success": true,
   "projectFilePath": "C:\\Users\\hp\\Documents\\_Dev\\NcciEmargementList\\src\\NcciEmargement\\NcciEmargement.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\hp\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",

@@ -6,7 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<NcciEmargDbContext>(options =>
     options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
 
-builder.Services.AddScoped<ICompanyRepository, CompanyRepositoryEF>();
+//builder.Services.AddScoped<ICompanyRepository, CompanyRepositoryEF>();
+
+builder.Services.AddScoped<ICompanyRepository, CompanyRepositoryDapper>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -266,3 +266,4 @@ C:\Users\hp\Documents\_Dev\NcciEmargementList\src\NcciEmargement\obj\Debug\net6.
 C:\Users\hp\Documents\_Dev\NcciEmargementList\src\NcciEmargement\obj\Debug\net6.0\NcciEmargement.pdb
 C:\Users\hp\Documents\_Dev\NcciEmargementList\src\NcciEmargement\obj\Debug\net6.0\NcciEmargement.genruntimeconfig.cache
 C:\Users\hp\Documents\_Dev\NcciEmargementList\src\NcciEmargement\obj\Debug\net6.0\ref\NcciEmargement.dll
+C:\Users\hp\Documents\_Dev\NcciEmargementList\src\NcciEmargement\bin\Debug\net6.0\Dapper.dll
