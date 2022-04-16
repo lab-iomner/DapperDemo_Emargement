@@ -9,6 +9,7 @@ builder.Services.AddDbContext<NcciEmargDbContext>(options =>
 //builder.Services.AddScoped<ICompanyRepository, CompanyRepositoryEF>();
 
 builder.Services.AddScoped<ICompanyRepository, CompanyRepositoryDapper>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepositoryDapper>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
