@@ -8,22 +8,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NcciEmargement.Data;
 using NcciEmargement.Models;
+using NcciEmargement.Repository;
 
 namespace NcciEmargement.Controllers
 {
     public class CompaniesController : Controller
     {
-        private readonly NcciEmargDbContext _context;
+        //private readonly NcciEmargDbContext _context;
 
-        public CompaniesController(NcciEmargDbContext context)
+        private readonly ICompanyRepository _comRepo;
+
+
+        public CompaniesController(ICompanyRepository comRepo)
         {
-            _context = context;
+            _comRepo = comRepo;
         }
 
         // GET: Companies
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Companies.ToListAsync());
+            return View(_comRepo.GetAll());
         }
 
         // GET: Companies/Details/5
@@ -34,8 +38,11 @@ namespace NcciEmargement.Controllers
                 return NotFound();
             }
 
-            var company = await _context.Companies
-                .FirstOrDefaultAsync(m => m.CompanyId == id);
+            //var company = await _context.Companies
+            //    .FirstOrDefaultAsync(m => m.CompanyId == id);
+            var company = _comRepo.Find(id.GetValueOrDefault());
+
+
             if (company == null)
             {
                 return NotFound();
@@ -59,8 +66,10 @@ namespace NcciEmargement.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(company);
-                await _context.SaveChangesAsync();
+               // _context.Add(company);
+                //_context.Companies.Add(company);
+                //await _context.SaveChangesAsync();
+                _comRepo.Add(company);
                 return RedirectToAction(nameof(Index));
             }
             return View(company);
@@ -74,7 +83,7 @@ namespace NcciEmargement.Controllers
                 return NotFound();
             }
 
-            var company = await _context.Companies.FindAsync(id);
+            var company = _comRepo.Find(id.GetValueOrDefault());   /*await _context.Companies.FindAsync(id);*/
             if (company == null)
             {
                 return NotFound();
@@ -96,22 +105,7 @@ namespace NcciEmargement.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(company);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CompanyExists(company.CompanyId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _comRepo.Update(company);
                 return RedirectToAction(nameof(Index));
             }
             return View(company);
@@ -125,30 +119,25 @@ namespace NcciEmargement.Controllers
                 return NotFound();
             }
 
-            var company = await _context.Companies
-                .FirstOrDefaultAsync(m => m.CompanyId == id);
-            if (company == null)
-            {
-                return NotFound();
-            }
-
-            return View(company);
-        }
-
-        // POST: Companies/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var company = await _context.Companies.FindAsync(id);
-            _context.Companies.Remove(company);
-            await _context.SaveChangesAsync();
+           _comRepo.Remove(id.GetValueOrDefault());
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CompanyExists(int id)
-        {
-            return _context.Companies.Any(e => e.CompanyId == id);
-        }
+        //// POST: Companies/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var company = await _context.Companies.FindAsync(id);
+        //    _context.Companies.Remove(company);
+        //    await _context.SaveChangesAsync();
+        //    return RedirectToAction(nameof(Index));
+        //}
+
+        //private bool CompanyExists(int id)
+        //{
+        //    return _context.Companies.Any(e => e.CompanyId == id);
+        //}
+
     }
 }
