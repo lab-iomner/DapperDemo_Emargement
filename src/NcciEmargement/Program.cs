@@ -1,9 +1,15 @@
 using NcciEmargement.Data;
 using Microsoft.EntityFrameworkCore;
+using NcciEmargement.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<NcciEmargDbContext>(options =>
     options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
+
+//builder.Services.AddScoped<ICompanyRepository, CompanyRepositoryEF>();
+
+builder.Services.AddScoped<ICompanyRepository, CompanyRepositoryDapper>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepositoryDapper>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
